@@ -1,0 +1,28 @@
+{
+  "en": {
+    "header": {
+      "name": "SPOHIE ALPERT",
+      "title": "Programmer"
+    },
+    "links": {
+      "title": "Links"
+    },
+    "about": {
+      "title": "About me",
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut justo libero. Vestibulum vitae mattis diam. Vivamus eleifend diam vel tempor lacinia. Suspendisse non augue egestas, dapibus justo et, lobortis ex. Nullam tortor diam, venenatis at enim a, lacinia porttitor erat. Vivamus tempor dictum leo id aliquam. Praesent elit lacus, tempus ac vehicula in, imperdiet dapibus elit. Nullam scelerisque euismod leo id vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut justo libero. Vestibulum vitae mattis diam."
+    }
+  },
+  "lt": {
+    "header": {
+      "name": "SPOHIE ALPERT",
+      "title": "Programuotoja"
+    },
+    "links": {
+      "title": "Nuorodos"
+    },
+    "about": {
+      "title": "Apie mane",
+      "content": "LIETUVIŠKAI Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut justo libero. Vestibulum vitae mattis diam. Vivamus eleifend diam vel tempor lacinia. Suspendisse non augue egestas, dapibus justo et, lobortis ex. Nullam tortor diam, venenatis at enim a, lacinia porttitor erat. Vivamus tempor dictum leo id aliquam. Praesent elit lacus, tempus ac vehicula in, imperdiet dapibus elit. Nullam scelerisque euismod leo id vestibulum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ut justo libero. Vestibulum vitae mattis diam."
+    }
+  }
+}
