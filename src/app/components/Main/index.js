@@ -12,6 +12,15 @@ class Main extends React.Component {
     };
   }
 
+  // favoritesToggle = (id) => {
+  //   let { favorites } = this.state;
+  //   if (favorites.includes(id)) {
+  //     this.setState({ favorites: favorites.filter(el != id) });
+  //   } else {
+  //     this.setState({ favorites: favorites.concat(id) });
+  //   }
+  // };
+
   componentDidMount() {
     // console.log(this.state.loading);
     fetch('https://academy-video-api.herokuapp.com/content/free-items', {
