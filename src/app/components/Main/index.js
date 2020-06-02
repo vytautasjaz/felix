@@ -8,18 +8,19 @@ class Main extends React.Component {
     super(props);
     this.state = {
       data: [],
+      favorites: [],
       // loading: true,
     };
   }
 
-  // favoritesToggle = (id) => {
-  //   let { favorites } = this.state;
-  //   if (favorites.includes(id)) {
-  //     this.setState({ favorites: favorites.filter(el != id) });
-  //   } else {
-  //     this.setState({ favorites: favorites.concat(id) });
-  //   }
-  // };
+  changeButton = (id) => {
+    // let { favorites } = this.state;
+    // if (favorites.includes(id)) {
+    //   this.setState({ favorites: favorites.filter(id !== id) });
+    // } else {
+    //   this.setState({ favorites: favorites.concat(id) });
+    // }
+  };
 
   componentDidMount() {
     // console.log(this.state.loading);
@@ -46,6 +47,8 @@ class Main extends React.Component {
                 image={element.image}
                 key={element.id}
                 alt={element.title}
+                btnText='Favorites'
+                onClick={() => this.changeButton(element.id)}
               />
             ))}
           </div>

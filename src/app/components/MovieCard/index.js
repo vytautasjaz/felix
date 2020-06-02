@@ -1,10 +1,10 @@
 import React from 'react';
 import './index.scss';
 
-// import Button from '../Button';
-import Favorite from '../Favorite';
+import Button from '../Button';
+// import Favorite from '../Favorite';
 
-function MovieCard({ title, description, image, alt }) {
+function MovieCard({ title, description, image, alt, btnText, onClick }) {
   return (
     <div>
       <div className='MovieCard'>
@@ -14,7 +14,8 @@ function MovieCard({ title, description, image, alt }) {
         <div className='MovieCard__info'>
           <div className='MovieCard__info__title'> {title}</div>
           <div className='MovieCard__info__description'>{description}</div>
-          <Favorite />
+          <Button size='small' onClick={onClick}> {btnText} </Button>
+          {/* <Favorite /> */}
           {/* <Button size='small'> Favorite </Button> */}
           {/* <Button size='small' status='favorite'>Favorite</Button> */}
         </div>
