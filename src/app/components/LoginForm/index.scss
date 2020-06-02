@@ -40,12 +40,20 @@ input {
 
 .InputContainer {
   position: relative;
+  margin-bottom: 20px;
 }
 
 .Eye {
-  height: 30px;
+  height: 35px;
   position: absolute;
   right: 10px;
   top: 5px;
   cursor: pointer;
+}
+
+.ErrorMessage {
+  position: absolute;
+  color: rgb(194, 11, 11);
+  font-weight: bold;
+  bottom: -25px;
 }

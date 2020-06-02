@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
 
-import Main from '../components/Main';
+import Content from '../components/Content';
 
 // function PrivateRoute(props) {
 //   const token = window.localStorage.getItem("token");
@@ -10,7 +10,7 @@ import Main from '../components/Main';
 function App() {
   return (
     <div className='App'>
-      <Main />
+      <Content />
     </div>
   );
 }

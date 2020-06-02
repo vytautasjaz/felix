@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../Button';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 import './index.scss';
 import Eye from '../../../images/eye.svg';
@@ -11,6 +11,7 @@ class LoginForm extends React.Component {
     this.state = {
       emailInput: '',
       passwordInput: '',
+      loginError: false,
     };
   }
   signIn = (e) => {
@@ -23,7 +24,16 @@ class LoginForm extends React.Component {
       }),
       headers: { 'Content-Type': 'application/json' },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log(this.state.loginError);
+
+        if (res.ok) {
+          return res.json();
+        }
+        this.setState.loginError = true;
+        console.log(this.state.loginError);
+        throw res.json();
+      })
       .then((response) => {
         localStorage.setItem('token', response.token);
         console.log(response);
@@ -50,7 +60,7 @@ class LoginForm extends React.Component {
       <div className='LoginWindow'>
         <form className='LoginForm' onSubmit={this.signIn}>
           <div className='FormUnit'>
-            <label>Username</label>
+            <label htmlFor='username'>Username</label>
             <input
               type='text'
               placeholder='Username'
@@ -59,7 +69,7 @@ class LoginForm extends React.Component {
             />
           </div>
           <div className='FormUnit'>
-            <label>Password </label>
+            <label htmlFor='password'>Password </label>
             <div className='InputContainer'>
               <input
                 type='password'
@@ -73,6 +83,9 @@ class LoginForm extends React.Component {
                 alt='Show / Hide Password'
                 onClick={this.togglePassword}
               />
+              <div className='ErrorMessage'>
+                Failure: please check the login details
+              </div>
             </div>
           </div>
           <Button type='submit'>Login</Button>
