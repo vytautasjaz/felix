@@ -25,10 +25,7 @@ import './index.scss';
 // }
 // export default Header;
 
-
-
 // PRIDĖTI ROUTER SWITCH, KAD RODYTŲ SKIRTINGUS HEADERIUS SKIRTINGOSE VIETOSE
-
 
 class Header extends React.Component {
   constructor(props) {
@@ -50,8 +47,26 @@ class Header extends React.Component {
     }
   }
 
-  Logout() {
-
+  async Logout() {
+    this.setState({ isLoading: true });
+    const response = await fetch(
+      'https://academy-video-api.herokuapp.com/auth/logout',
+      {
+        method: 'POST',
+        headers: {
+          'Contnent-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          authorization: window.localStorage.getItem('token'),
+        }),
+      }
+    );
+    if (response.ok) {
+      localStorage.removeItem('token');
+    } else {
+      console.log(window.localStorage.getItem('token'));
+      throw response;
+    }
   }
 
   // LoginButton(token) {
@@ -70,7 +85,7 @@ class Header extends React.Component {
         </Link>
         {/* {this.LoginButton(window.localStorage.getItem('token'))} */}
         {this.state.token ? (
-          <Button>Logout</Button>
+          <Button onClick={() => this.Logout()}>Logout</Button>
         ) : (
           <Button to='/login'>Sign In</Button>
         )}
