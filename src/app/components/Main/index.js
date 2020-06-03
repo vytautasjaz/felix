@@ -1,65 +1,59 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './index.scss';
 
 import MovieCard from '../MovieCard';
 
-class Main extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      data: [],
-      favorites: [],
-      isLoading: true,
-    };
-  }
+const Main = () => {
+  const [data, setData] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  changeButton = (id) => {
-    let { favorites } = this.state;
+  const changeButton = (id) => {
     if (favorites.includes(id)) {
-      this.setState({ favorites: favorites.filter((el) => el !== id) });
+      setFavorites(favorites.filter((el) => el !== id));
     } else {
-      this.setState({ favorites: favorites.concat(id) });
+      setFavorites(favorites.concat(id));
     }
   };
 
-  componentDidMount() {
-    fetch('https://academy-video-api.herokuapp.com/content/free-items', {
-      method: 'GET',
-      headers: { 'Contnent-Type': 'application/json' },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        this.setState({ data });
-        this.setState({ isLoading: false });
-      });
-  }
-
-  render() {
-    return (
-      <div className='Main'>
-        {this.state.data.length > 0 && (
-          <div className='Main__movies'>
-            {this.state.data.map((element) => (
-              <MovieCard
-                title={element.title}
-                description={element.description}
-                image={element.image}
-                key={element.id}
-                alt={element.title}
-                btnText={
-                  this.state.favorites.includes(element.id)
-                    ? 'Remove'
-                    : 'Favorite'
-                }
-                isFavorite={this.state.favorites.includes(element.id)}
-                onClick={() => this.changeButton(element.id)}
-              />
-            ))}
-          </div>
-        )}
-      </div>
+  const getData = useCallback(async () => {
+    setIsLoading(true);
+    const response = await fetch(
+      'https://academy-video-api.herokuapp.com/content/free-items',
+      {
+        method: 'GET',
+        headers: { 'Contnent-Type': 'application/json' },
+      }
     );
-  }
-}
+    if (!response.ok) throw response;
+    setData(await response.json());
+    setIsLoading(false);
+  }, []);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  return (
+    <div className='Main'>
+      {data.length > 0 && (
+        <div className='Main__movies'>
+          {data.map((elem) => (
+            <MovieCard
+              title={elem.title}
+              description={elem.description}
+              image={elem.image}
+              key={elem.id}
+              alt={elem.title}
+              btnText={favorites.includes(elem.id) ? 'Remove' : 'Favorite'}
+              isFavorite={favorites.includes(elem.id)}
+              onClick={() => changeButton(elem.id)}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Main;
