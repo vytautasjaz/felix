@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './index.scss';
-
+import Loading from '../../../images/loading.gif';
 import MovieCard from '../MovieCard';
 
 const Main = () => {
@@ -36,21 +36,29 @@ const Main = () => {
 
   return (
     <div className='Main'>
-      {data.length > 0 && (
-        <div className='Main__movies'>
-          {data.map((elem) => (
-            <MovieCard
-              title={elem.title}
-              description={elem.description}
-              image={elem.image}
-              key={elem.id}
-              alt={elem.title}
-              btnText={favorites.includes(elem.id) ? 'Remove' : 'Favorite'}
-              isFavorite={favorites.includes(elem.id)}
-              onClick={() => changeButton(elem.id)}
-            />
-          ))}
-        </div>
+      {isLoading ? (
+        <img className="Loading" src={Loading} />
+      ) : (
+        data.length > 0 && (
+          <div className='Main__movies'>
+            {data.map((elem) => (
+              <MovieCard
+                title={elem.title}
+                description={elem.description}
+                image={elem.image}
+                key={elem.id}
+                alt={elem.title}
+                btnText={favorites.includes(elem.id) ? 'Remove' : 'Favorite'}
+                isFavorite={favorites.includes(elem.id)}
+                onClick={() => changeButton(elem.id)}
+              />
+              
+            )
+            
+)
+            }
+          </div>
+        )
       )}
     </div>
   );

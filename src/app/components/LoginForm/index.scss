@@ -1,5 +1,6 @@
 .LoginWindow {
   width: 100vw;
+  min-height: calc(100vh - 110px);
   flex: 1;
   margin: 0;
   display: flex;

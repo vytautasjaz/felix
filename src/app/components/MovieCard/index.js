@@ -12,15 +12,17 @@ function MovieCard({
   btnText,
   onClick,
   isFavorite,
+  id
 }) {
   return (
     <div>
       <div className='MovieCard'>
+      {console.log(id)}
         <div className='MoveCard__imageBox'>
           <img src={image} alt={alt} className='MovieCard__image' />
         </div>
         <div className='MovieCard__info'>
-          <div className='MovieCard__info__title'> {title}</div>
+          <div className='MovieCard__info__title'> <a href = {`/movie/${id}`} > {title}</a></div>
           <div className='MovieCard__info__description'>{description}</div>
           <Button
             size='small'

@@ -14,6 +14,8 @@ import Login from './pages/Login.js';
 import Home from './pages/Home.js';
 import Content from './pages/Content.js';
 import PrivateRoute from './pages/PrivateRoute';
+import SinglMovie from './pages/SingleMovie.js';
+
 
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <PrivateRoute exact path='/content' component={Content} />
+          <PrivateRoute exact path='/movie/:id' component={SinglMovie} />
           <Route path='*'>
             <div>404 Page not found</div>
           </Route>
