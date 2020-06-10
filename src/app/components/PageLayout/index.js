@@ -8,7 +8,7 @@ function PageLayout({ children }) {
   return (
     <div className="PageLayout">
       <Header />
-      <main>{children}</main>
+      <main className = "MainContent">{children}</main>
       <Footer />
     </div>
   );

@@ -4,7 +4,7 @@ import './index.scss';
 import Title from '../Title';
 import Button from '../Button';
 import Loading from '../../../images/loading.gif';
-// import MovieCard from '../MovieCard';
+import FavoriteButton from '../FavoriteButton';
 
 const SingleMovie = () => {
   const [movie, setMovie] = useState([]);
@@ -26,29 +26,27 @@ const SingleMovie = () => {
     if (!response.ok) throw response;
     setMovie(await response.json());
     setIsLoading(false);
-  }, []);
+  }, [id, setMovie]);
 
   useEffect(() => {
     getMovie();
-  }, []);
+  }, [getMovie]);
 
   return (
     <div className='SingleMovie'>
       {isLoading ? (
-        <img className='Loading' src={Loading} />
+        <img className='Loading' alt='Loading' src={Loading} />
       ) : (
         !!movie && (
-          <div>
+          <div className = "SingleMovieContent">
             <img src={movie.image} alt={movie.title} className='MovieImage' />
-            <div>
+            <div className = "SingleMovieData">
               <Title level='2'>{movie.title}</Title>
               <div>{movie.description}</div>
-              <Button size='small' mode='regular'>
-                Watch
+              <Button size='large' mode='regular'>
+                Watch 🎥
               </Button>
-              <Button size='small' mode='regular'>
-                Favorite
-              </Button>
+              <FavoriteButton movieId={id}></FavoriteButton>
             </div>
           </div>
         )

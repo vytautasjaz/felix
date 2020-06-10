@@ -6,7 +6,6 @@ function PrivateRoute(props) {
   const location = useLocation();
 
   if (token) {
-    console.log('Proceed');
     return <Route {...props} />;
   }
   return (

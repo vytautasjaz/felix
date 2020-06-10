@@ -5,16 +5,7 @@ import Loading from '../../../images/loading.gif';
 
 const Content = () => {
   const [data, setData] = useState([]);
-  const [favorites, setFavorites] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
-  const changeButton = (id) => {
-    if (favorites.includes(id)) {
-      setFavorites(favorites.filter((el) => el !== id));
-    } else {
-      setFavorites(favorites.concat(id));
-    }
-  };
 
   const getData = useCallback(async () => {
     setIsLoading(true);
@@ -31,16 +22,16 @@ const Content = () => {
     if (!response.ok) throw response;
     setData(await response.json());
     setIsLoading(false);
-  }, []);
+  }, [setData]);
 
   useEffect(() => {
     getData();
-  }, []);
+  }, [getData]);
 
   return (
     <div className='Main'>
       {isLoading ? (
-        <img className='Loading' src={Loading} />
+        <img className='Loading' alt='Loading' src={Loading} />
       ) : (
         data.length > 0 && (
           <div className='Main__movies'>
@@ -50,10 +41,8 @@ const Content = () => {
                 description={elem.description}
                 image={elem.image}
                 id={elem.id}
+                key={elem.id}
                 alt={elem.title}
-                btnText={favorites.includes(elem.id) ? 'Remove' : 'Favorite'}
-                isFavorite={favorites.includes(elem.id)}
-                onClick={() => changeButton(elem.id)}
               />
             ))}
           </div>

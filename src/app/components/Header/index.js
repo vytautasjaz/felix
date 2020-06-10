@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Button from '../Button';
 import { Link } from 'react-router-dom';
 import './index.scss';
+import { connect } from 'react-redux';
 
 // PRIDĖTI ROUTER SWITCH, KAD RODYTŲ SKIRTINGUS HEADERIUS SKIRTINGOSE VIETOSE
 
@@ -12,7 +13,7 @@ const Header = () => {
     if (token !== !!window.localStorage.getItem('token')) {
       setToken(!!window.localStorage.getItem('token'));
     }
-  }, []);
+  }, [token]);
 
   const Logout = async () => {
     const response = await fetch(
@@ -45,4 +46,10 @@ const Header = () => {
   );
 };
 
-export default Header;
+function mapStateToProps({ token }) {
+  return {
+    userToken: token,
+  };
+}
+
+export default connect(mapStateToProps, null)(Header);

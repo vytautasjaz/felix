@@ -1,8 +1,18 @@
 .SingleMovie {
+    max-width:1000px;
+    margin: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
     background-color: #444444;
     color: white;
+    &Content {
+        display: flex;
+    }
+    &Data{
+        max-width:600px;
+        padding: 20px;
+    }
 }
 
 .MovieImage {

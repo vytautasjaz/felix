@@ -1,6 +1,7 @@
-.Button {
+.FavoriteButton {
   margin: 5px;
   text-align: center;
+  padding: 5px 25px;
   color: #f1f1f1;
   border: 0;
   background-color: red;
@@ -18,14 +19,6 @@
   &:hover {
     background-color: rgb(189, 15, 15);
   }
-}
-
-.button--small {
-  padding: 5px 25px;
-}
-
-.button--large {
-  padding: 10px 25px;
 }
 
 .favorite {
