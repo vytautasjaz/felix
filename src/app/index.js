@@ -8,8 +8,6 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  // Link,
-  // Redirect,
 } from 'react-router-dom';
 
 import PageLayout from './components/PageLayout';
@@ -19,6 +17,7 @@ import Home from './pages/Home.js';
 import Content from './pages/Content.js';
 import PrivateRoute from './pages/PrivateRoute';
 import SinglMovie from './pages/SingleMovie.js';
+import Header from './components/Header'
 
 function App() {
   return (

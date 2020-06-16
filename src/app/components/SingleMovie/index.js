@@ -44,7 +44,7 @@ const SingleMovie = () => {
               <Title level='2'>{movie.title}</Title>
               <div>{movie.description}</div>
               <Button size='large' mode='regular'>
-                Watch 🎥
+                Watch 
               </Button>
               <FavoriteButton movieId={id}></FavoriteButton>
             </div>

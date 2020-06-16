@@ -13,12 +13,13 @@ function Button({ children, size, status, id, mode, ...props }) {
     <Tag
       className={`${sizeClass} ${modeClass} ${status}`}
       {...props}
-      onClick={id}
+      onclick={id}
     >
       {children}
     </Tag>
   );
 }
+
 
 function mapStateToProps({ favorites }) {
   return {

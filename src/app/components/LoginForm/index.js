@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import React from 'react';
+import { useHistory, withRouter } from 'react-router-dom';
 import Button from '../Button';
-import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './index.scss';
@@ -27,12 +26,9 @@ const LoginForm = ({ setToken }) => {
       headers: { 'Content-Type': 'application/json' },
     })
       .then((res) => {
-        // console.log(this.state.loginError);
         if (res.ok) {
           return res.json();
         }
-        // this.setState.loginError = true;
-        // console.log(this.state.loginError);
         throw res.json();
       })
       .then((response) => {
@@ -41,6 +37,13 @@ const LoginForm = ({ setToken }) => {
         history.replace('/content');
       })
       .catch(console.log);
+  };
+
+  const togglePassword = () => {
+    const password = document.querySelector('#password');
+    const type =
+      password.getAttribute('type') === 'password' ? 'text' : 'password';
+    password.setAttribute('type', type);
   };
 
   return (
@@ -72,7 +75,7 @@ const LoginForm = ({ setToken }) => {
               src={Eye}
               className='Eye'
               alt='Show / Hide Password'
-              // onClick={togglePassword}
+              onClick={togglePassword}
             />
             <div className='ErrorMessage'>
               {/* {error && 'Failure: please check the login details'} */}
@@ -86,11 +89,6 @@ const LoginForm = ({ setToken }) => {
   );
 };
 
-// function mapStateToProps({ token }) {
-//   return {
-//     allFavorites: favorites,
-//   };
-// }
 
 function mapDispatchToProps(dispatch) {
   return {
