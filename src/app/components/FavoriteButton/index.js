@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
-// import { compose, bindActionCreators } from "redux";
+import { compose, bindActionCreators } from 'redux';
+
+import content from '../../../content';
 
 import './index.scss';
 
-const FavoriteButton = ({ movieId, allFavorites, toggleFavorite }) => {
-  const onClick = () => toggleFavorite(movieId);
-  const isFavorite = !!allFavorites && allFavorites.includes(movieId);
+const FavoriteButton = ({ movieId, isFavorite, toggleFavorite }) => {
+  const onClick = () => toggleFavorite(movieId, isFavorite);
   const modeClass = isFavorite ? 'FavoriteButton favorite' : 'FavoriteButton';
   return (
     <button className={modeClass} onClick={onClick}>
@@ -15,16 +16,36 @@ const FavoriteButton = ({ movieId, allFavorites, toggleFavorite }) => {
   );
 };
 
-function mapStateToProps({ content: {favorites} }) {
-  return {
-    allFavorites: favorites,
-  };
-}
+const enchance = compose (
+connect (
+  (state, {movieId}) => {
+    return {
+      isFavorite: content.selectors.isFavoriteById(state, movieId),
+    }
+  },
+  (dispatch) => {
+    return {
+      toggleFavorite: bindActionCreators(
+        content.actions.toggleFavorite,
+        dispatch
+      ),
+    };
+  }
+)
+)
+// function mapStateToProps({ content: { favorites } }) {
+//   return {
+//     isFavorite: content.selectors.isFavoriteById(state, movieId),
+//   };
+// }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    toggleFavorite: (id) => dispatch({ type: 'TOGGLE_FAVORITE', id }),
-  };
-}
+// function mapDispatchToProps(dispatch) {
+//   return {
+//     toggleFavorite: bindActionCreators(
+//       content.actions.toggleFavorite,
+//       dispatch
+//     ),
+//   };
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FavoriteButton);
+export default enchance(FavoriteButton);
