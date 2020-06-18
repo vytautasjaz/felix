@@ -12,7 +12,7 @@ const removeFavorite = (state, action) => ({
   ...state,
   favorites: state.favorites.filter((id) => id !== action.id),
 });
-
+//test
 function contentReducer(state = DEFAULT_CONTET_STATE, action) {
   switch (action.type) {
     case types.ADD_FAVORITE:
