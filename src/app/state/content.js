@@ -1,4 +1,4 @@
-import * as types from '../types';
+import * as types from '../../content/types';
 
 const DEFAULT_CONTET_STATE = {
   favorites: [],

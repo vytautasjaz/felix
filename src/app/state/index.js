@@ -1,6 +1,6 @@
 import { createStore, combineReducers } from 'redux';
-import content from '../../content/reducers/content';
-import authentication from '../../content/reducers/authentication';
+import content from './content';
+import authentication from './authentication';
 
 const store = createStore(
   combineReducers({ content, authentication }),
